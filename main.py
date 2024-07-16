@@ -24,9 +24,8 @@ class Cafe(db.Model):
     def to_dict(self):
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}
 
-# Ensure that the database and table are created
 with app.app_context():
-    db.create_all()  # This will create the table if it doesn't exist
+    db.create_all()
 
 @app.route("/random")
 def get_random_cafe():

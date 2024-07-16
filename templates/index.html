@@ -10,12 +10,18 @@
     />
   </head>
   <body>
-    <h1>Welcome to the Cafe & Wifi API</h1>
-    <p><a href="{{ url_for('get_random_cafe') }}">Random Cafe</a></p>
-    <br />
-    <p><a href="{{ url_for('get_all_cafes') }}">All Cafes</a></p>
-    <br />
-
+    <section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">Welcome to Friendly Cafe</h1>
+          <p class="lead text-body-secondary">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+          <p>
+            <a href="#" class="btn btn-primary my-2">Main call to action</a>
+            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+          </p>
+        </div>
+      </div>
+    </section>
     <div class="container">
       <div class="row">
         {% for cafe in cafes_dict %}
@@ -24,7 +30,11 @@
             <img src="{{cafe.img_url}}" alt="Cafe Img" width=full height=255px>
             <div class="card-body">
               <h4>{{cafe.name}}</h4>
-              <p>Seats:{{cafe.seats}}</p>
+              <h5>Seats: {{cafe.seats}}</h5>
+              <h6>Sockets Available: {% if cafe.has_sockets %} Yes {% else %} No {% endif %}</h6>
+              <h6> Wifi   Available: {% if cafe.has_wifi %} Yes {% else %} No {% endif %}</h6>
+              <h6>Public  Toilets: {% if cafe.has_toilets %} Yes {% else %} No {% endif %}</h6>
+              <h6>Calls   Allow: {% if cafe.can_take_calls %} Yes {% else %} No {% endif %}</h6>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button
@@ -40,7 +50,12 @@
                   {{cafe.coffee_price}}
                   </button>
                 </div>
-                <small class="text-body-secondary">{{cafe.location}}</small>
+                <div>
+                  <small class="text-body-secondary">
+                      <a href="{{cafe.map_url}}" class="btn btn-primary">{{cafe.location}}</a>
+                  </small>
+              </div>
+              
               </div>
             </div>
           </div>
