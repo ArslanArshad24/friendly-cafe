@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cafe & Wifi API</title>
+    <!-- Include Bootstrap CSS -->
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h1>Welcome to the Cafe & Wifi API</h1>
+    <p><a href="{{ url_for('get_random_cafe') }}">Random Cafe</a></p>
+    <br />
+    <p><a href="{{ url_for('get_all_cafes') }}">All Cafes</a></p>
+    <br />
+
+    <div class="container">
+      <div class="row">
+        {% for cafe in cafes_dict %}
+        <div class="col-sm-4 py-5">
+          <div class="card shadow-sm">
+            <img src="{{cafe.img_url}}" alt="Cafe Img" width=full height=255px>
+            <div class="card-body">
+              <h4>{{cafe.name}}</h4>
+              <p>Seats:{{cafe.seats}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-outline-secondary"
+                  >
+                    Price
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-outline-secondary"
+                  >
+                  {{cafe.coffee_price}}
+                  </button>
+                </div>
+                <small class="text-body-secondary">{{cafe.location}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
